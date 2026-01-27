@@ -1,7 +1,7 @@
 :root {
   --primary-color: #2204FF;
-  --secondary-color: #0d009c;
-  --accent-color: #4a3aff;
+  --secondary-color: #FE0001;
+  --accent-color: #ffffff;
   --text-color: #333333;
   --text-light: #ffffff;
   --bg-color: #ffffff;
@@ -46,18 +46,117 @@ img {
   display: block;
 }
 
+
+/* Dynamic Animation System */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, opacity;
+}
+
+.reveal-on-scroll.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Stagger Delays */
+.stagger-1 {
+  transition-delay: 0.1s;
+}
+
+.stagger-2 {
+  transition-delay: 0.2s;
+}
+
+.stagger-3 {
+  transition-delay: 0.3s;
+}
+
+.stagger-4 {
+  transition-delay: 0.4s;
+}
+
+/* Keyframes for Dynamic Sections */
+@keyframes float-complex {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  33% {
+    transform: translateY(-15px) rotate(2deg);
+  }
+
+  66% {
+    transform: translateY(5px) rotate(-2deg);
+  }
+}
+
+@keyframes glow-pulse {
+  0% {
+    filter: drop-shadow(0 0 5px rgba(34, 4, 255, 0.4));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 20px rgba(34, 4, 255, 0.8));
+  }
+
+  100% {
+    filter: drop-shadow(0 0 5px rgba(34, 4, 255, 0.4));
+  }
+}
+
+@keyframes mesh-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--bg-light-gray);
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--primary-color);
-  border-radius: 5px;
+  border-radius: 10px;
+  border: 2px solid var(--bg-light-gray);
 }
 
 ::-webkit-scrollbar-thumb:hover {

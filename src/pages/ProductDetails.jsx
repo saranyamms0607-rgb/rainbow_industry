@@ -11,6 +11,11 @@ const ProductDetails = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        // Force trigger entrance animations
+        const timer = setTimeout(() => {
+            document.querySelectorAll('.reveal-left, .reveal-right').forEach(el => el.classList.add('active'));
+        }, 100);
+        return () => clearTimeout(timer);
     }, [id]);
 
     if (!product) {
@@ -26,12 +31,12 @@ const ProductDetails = () => {
                         <Link to="/">&larr; Back to Home</Link>
                     </div>
                     <div className="details-grid">
-                        <div className="details-image-wrapper">
+                        <div className="details-image-wrapper reveal-left">
                             <div className="details-bg-circle"></div>
                             <img src={product.image} alt={product.name} className="details-image" />
                         </div>
 
-                        <div className="details-info">
+                        <div className="details-info reveal-right">
                             <span className="details-category">{product.category}</span>
                             <h1 className="details-title">{product.name}</h1>
                             <p className="details-long-desc">{product.longDescription}</p>

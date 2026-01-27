@@ -5,7 +5,7 @@ const Contact = () => {
     return (
         <section className="contact-section">
             <div className="contact-container">
-                <div className="contact-content">
+                <div className="contact-content reveal-left">
                     <h2 className="section-title">Get In Touch</h2>
                     <h3 className="contact-heading">Ready to start your project?</h3>
                     <p className="contact-text">
@@ -14,21 +14,21 @@ const Contact = () => {
                     </p>
 
                     <div className="contact-details">
-                        <div className="contact-item">
+                        <div className="contact-item stagger-1">
                             <span className="icon">📍</span>
                             <div className="detail-text">
                                 <h4>Location</h4>
                                 <p>123 Industrial Park, Plastic City, PC 56789</p>
                             </div>
                         </div>
-                        <div className="contact-item">
+                        <div className="contact-item stagger-2">
                             <span className="icon">📧</span>
                             <div className="detail-text">
                                 <h4>Email</h4>
                                 <p>info@rainbowindustry.com</p>
                             </div>
                         </div>
-                        <div className="contact-item">
+                        <div className="contact-item stagger-3">
                             <span className="icon">📞</span>
                             <div className="detail-text">
                                 <h4>Phone</h4>
@@ -38,7 +38,7 @@ const Contact = () => {
                     </div>
                 </div>
 
-                <div className="contact-form-wrapper">
+                <div className="contact-form-wrapper reveal-right">
                     <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
                         <div className="form-group">
                             <label htmlFor="name">Name</label>

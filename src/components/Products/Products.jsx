@@ -11,8 +11,8 @@ const Products = () => {
                 <p className="products-subtitle">Explore our wide range of plastic solutions</p>
 
                 <div className="products-grid">
-                    {productsData.map((product) => (
-                        <div className="product-card" key={product.id}>
+                    {productsData.map((product, index) => (
+                        <div className={`product-card reveal-on-scroll stagger-${(index % 4) + 1}`} key={product.id}>
                             <div className="product-image-container">
                                 <div className="img-wrapper">
                                     <img src={product.image} alt={product.name} className="product-img-animated" />

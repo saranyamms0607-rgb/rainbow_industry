@@ -1,6 +1,6 @@
 import React from 'react';
 import './Hero.css';
-import heroBg from '../../assets/hero_background.png'; // Assuming this will be the generated image
+import heroBg from '../../assets/hero_background.png';
 
 const Hero = () => {
     return (

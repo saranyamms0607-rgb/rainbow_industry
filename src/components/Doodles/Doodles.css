@@ -1,0 +1,128 @@
+.overall-doodle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+    opacity: 0.15;
+}
+
+.floating-doodle {
+    position: absolute;
+    width: 80px;
+    height: auto;
+    animation: float-doodle 20s infinite ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: var(--primary-color);
+    filter: blur(2px);
+    transition: filter 0.3s ease;
+}
+
+
+.floating-doodle img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@keyframes float-doodle {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    33% {
+        transform: translate(20px, -30px) rotate(10deg);
+    }
+
+    66% {
+        transform: translate(-15px, 20px) rotate(-10deg);
+    }
+}
+
+/* Positionings */
+.doodle-1 {
+    top: 5%;
+    left: 5%;
+    animation-duration: 25s;
+}
+
+.doodle-2 {
+    top: 40%;
+    right: 5%;
+    animation-duration: 30s;
+    animation-delay: -5s;
+}
+
+.doodle-3 {
+    bottom: 15%;
+    left: 8%;
+    animation-duration: 22s;
+    animation-delay: -2s;
+}
+
+.doodle-apple {
+    top: 20%;
+    right: 15%;
+    animation-duration: 28s;
+    animation-delay: -10s;
+}
+
+.doodle-bread {
+    bottom: 35%;
+    right: 2%;
+    animation-duration: 35s;
+    animation-delay: -15s;
+}
+
+.doodle-carrot {
+    top: 60%;
+    left: 15%;
+    animation-duration: 24s;
+    animation-delay: -8s;
+}
+
+.doodle-pizza {
+    top: 75%;
+    right: 20%;
+    animation-duration: 32s;
+    animation-delay: -3s;
+}
+
+.doodle-coffee {
+    bottom: 5%;
+    left: 25%;
+    animation-duration: 27s;
+    animation-delay: -12s;
+}
+
+.doodle-hamburger {
+    top: 10%;
+    left: 40%;
+    animation-duration: 31s;
+    animation-delay: -1s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .floating-doodle {
+        width: 60px;
+        font-size: 2rem;
+    }
+
+    .doodle-apple,
+    .doodle-bread,
+    .doodle-carrot,
+    .doodle-pizza,
+    .doodle-coffee,
+    .doodle-hamburger {
+        display: none;
+    }
+}

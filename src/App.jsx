@@ -9,6 +9,7 @@ function App() {
     <Router basename={import.meta.env.BASE_URL}>
       <div className="app-container">
         <Routes>
+
           <Route path="/" element={<Home />} />
           <Route path="/product/:id" element={<ProductDetails />} />
         </Routes>
@@ -16,5 +17,6 @@ function App() {
     </Router>
   );
 }
+
 
 export default App;

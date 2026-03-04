@@ -10,12 +10,30 @@ const ProductDetails = () => {
     const product = productsData.find(p => p.id === parseInt(id));
 
     useEffect(() => {
+        if (product) {
+            document.title = `${product.name} | Rainbow Industry Products`;
+        }
         window.scrollTo(0, 0);
-        // Force trigger entrance animations
-        const timer = setTimeout(() => {
-            document.querySelectorAll('.reveal-left, .reveal-right').forEach(el => el.classList.add('active'));
-        }, 100);
-        return () => clearTimeout(timer);
+
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        const animatedElements = document.querySelectorAll('.reveal-on-scroll, .reveal-left, .reveal-right');
+        animatedElements.forEach(el => observer.observe(el));
+
+        return () => observer.disconnect();
     }, [id]);
 
     if (!product) {
@@ -50,21 +68,27 @@ const ProductDetails = () => {
                                 </ul>
                             </div>
 
-                            <div className="specs-box">
-                                <h3>Specifications</h3>
-                                <div className="specs-grid">
-                                    {Object.entries(product.specs).map(([key, value]) => (
-                                        <div key={key} className="spec-item">
-                                            <span className="spec-key">{key}:</span>
-                                            <span className="spec-value">{value}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-
                             <button className="inquire-btn">Inquire Now</button>
+
                         </div>
                     </div>
+                    {product.variants && (
+                        <div className="product-variants-section reveal-on-scroll">
+                            <h2 className="variants-heading">Our Products List</h2>
+                            <div className="variants-grid">
+                                {product.variants.map((variant) => (
+                                    <div key={variant.id} className="variant-card">
+                                        <div className="variant-image-wrapper">
+                                            <img src={variant.image} alt={variant.name} />
+                                        </div>
+                                        <div className="variant-info">
+                                            <p className="variant-name">{variant.name}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
             <Footer />

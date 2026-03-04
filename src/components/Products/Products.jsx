@@ -13,19 +13,21 @@ const Products = () => {
                 <div className="products-grid">
                     {productsData.map((product, index) => (
                         <div className={`product-card reveal-on-scroll stagger-${(index % 4) + 1}`} key={product.id}>
-                            <div className="product-image-container">
-                                <div className="img-wrapper">
-                                    <img src={product.image} alt={product.name} className="product-img-animated" />
+                            <Link to={`/product/${product.id}`} className="product-card-link">
+                                <div className="product-image-container">
+                                    <div className="img-wrapper">
+                                        <img src={product.image} alt={product.name} className="product-img-animated" loading="lazy" decoding="async" />
+                                    </div>
+                                    <div className="product-overlay">
+                                        <span className="view-btn">View Details</span>
+                                    </div>
                                 </div>
-                                <div className="product-overlay">
-                                    <Link to={`/product/${product.id}`} className="view-btn">View Details</Link>
+                                <div className="product-info">
+                                    <span className="product-category">{product.category}</span>
+                                    <h3 className="product-name">{product.name}</h3>
+                                    <p className="product-description">{product.description}</p>
                                 </div>
-                            </div>
-                            <div className="product-info">
-                                <span className="product-category">{product.category}</span>
-                                <h3 className="product-name">{product.name}</h3>
-                                <p className="product-description">{product.description}</p>
-                            </div>
+                            </Link>
                         </div>
                     ))}
                 </div>

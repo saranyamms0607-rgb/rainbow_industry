@@ -49,9 +49,6 @@ const Navbar = () => {
                     <li className="nav-item">
                         <a href="#about" className="nav-links" onClick={() => scrollToSection('about')}>About Us</a>
                     </li>
-                    <li className="nav-item">
-                        <a href="#teams" className="nav-links" onClick={() => scrollToSection('teams')}>Teams</a>
-                    </li>
                     <li className="nav-item dropdown">
                         <a href="#products" className="nav-links dropbtn" onClick={(e) => e.preventDefault()}>
                             Products <i className="arrow down"></i>

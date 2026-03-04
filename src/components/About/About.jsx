@@ -1,49 +1,85 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import logo from '../../assets/logo.jpg';
 import './About.css';
+import R3DViewer from '../R3DViewer/R3DViewer';
 
 const About = () => {
+    const containerRef = useRef(null);
+    const logoRef = useRef(null);
+
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const ctx = gsap.context(() => {
+            // Logo Animation
+            gsap.fromTo(
+                logoRef.current,
+                { opacity: 0, scale: 0.5, y: 20 },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: 'top 60%',
+                        end: 'top 20%',
+                        scrub: 1,
+                    },
+                }
+            );
+        }, containerRef);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <section className="about-section">
+        <section className="about-scroll-section" ref={containerRef}>
+            {/* Background Blobs for Visual Interest */}
             <div className="about-bg-elements">
                 <div className="blob blur-1"></div>
                 <div className="blob blur-2"></div>
             </div>
+
             <div className="about-container">
-                <div className="about-image reveal-left">
-                    <div className="image-card">
-                        <div className="cube-art">
-                            <div className="face front"></div>
-                            <div className="face back"></div>
-                            <div className="face right"></div>
-                            <div className="face left"></div>
-                            <div className="face top"></div>
-                            <div className="face bottom"></div>
-                        </div>
+                {/* LEFT - R3D CANVAS */}
+                <div className="canvas-wrapper">
+                    <R3DViewer />
+                    <div className="logo-overlay-box" ref={logoRef}>
+                        <img src={logo} alt="Rainbow Logo" className="about-logo-inner" />
                     </div>
                 </div>
-                <div className="about-content reveal-right">
+
+                {/* RIGHT - CONTENT */}
+                <div className="about-content">
                     <h2 className="section-title">Who We Are</h2>
                     <h3 className="about-subtitle">Pioneering Plastic Innovation Since 2000</h3>
-                    <p className="about-text">
-                        Rainbow Industry is a leading manufacturer of high-quality plastic solutions.
-                        We specialize in creating durable, safe, and aesthetic containers for food,
-                        industrial use, and sanitary applications.
-                    </p>
-                    <p className="about-text">
-                        Our commitment to sustainability and excellence ensures that every product
-                        leaving our factory meets the highest global standards.
-                    </p>
-                    <div className="about-stats">
-                        <div className="stat-item stagger-1">
-                            <span className="stat-number">20+</span>
+
+                    <div className="about-description">
+                        <p className="about-text">
+                            Rainbow Industry is a leading manufacturer of high-quality plastic solutions.
+                            We specialize in creating durable, safe, and aesthetic containers for food,
+                            industrial use, and sanitary applications.
+                        </p>
+                        <p className="about-text">
+                            Our commitment to sustainability and excellence ensures that every product
+                            leaving our factory meets the highest global standards.
+                        </p>
+                    </div>
+
+                    <div className="about-stats-grid">
+                        <div className="stat-item">
+                            <h3 className="stat-number">20+</h3>
                             <span className="stat-label">Years Experience</span>
                         </div>
-                        <div className="stat-item stagger-2">
-                            <span className="stat-number">5M+</span>
+                        <div className="stat-item">
+                            <h3 className="stat-number">5M+</h3>
                             <span className="stat-label">Products Sold</span>
                         </div>
-                        <div className="stat-item stagger-3">
-                            <span className="stat-number">100%</span>
+                        <div className="stat-item">
+                            <h3 className="stat-number">100%</h3>
                             <span className="stat-label">Client Satisfaction</span>
                         </div>
                     </div>
@@ -54,3 +90,4 @@ const About = () => {
 };
 
 export default About;
+

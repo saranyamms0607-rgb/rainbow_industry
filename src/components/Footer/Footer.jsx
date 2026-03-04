@@ -19,7 +19,6 @@ const Footer = () => {
                         <div className="footer-column">
                             <h4>Company</h4>
                             <a href="#about">About Our Mission</a>
-                            <a href="#teams">Our Professional Team</a>
                             <a href="#careers">Join the Innovation</a>
                             <a href="#contact">Contact Support</a>
                         </div>

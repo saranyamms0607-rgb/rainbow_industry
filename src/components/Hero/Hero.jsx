@@ -1,18 +1,23 @@
 import React from 'react';
 import './Hero.css';
+
+// Use a separate img tag so browser can preload with fetchpriority="high"
+// (background-image in CSS cannot be preloaded/prioritized by the browser)
 import heroBg from '../../assets/hero_background.png';
 
 const Hero = () => {
     return (
         <section className="hero" id="hero">
-            <div className="hero-background" style={{
-                backgroundImage: `url(${heroBg})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                opacity: 0.6
-            }}>
-                <div className="hero-overlay"></div>
-            </div>
+            {/* LCP image — fetchpriority=high tells browser to load this first */}
+            <img
+                src={heroBg}
+                alt=""
+                className="hero-bg-img"
+                fetchpriority="high"
+                decoding="sync"
+                aria-hidden="true"
+            />
+            <div className="hero-overlay" />
 
             <div className="hero-content">
                 <h1 className="hero-title">

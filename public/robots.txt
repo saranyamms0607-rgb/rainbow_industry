@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://saranyamms0607-rgb.github.io/rainbow_industry/sitemap.xml
